@@ -15,6 +15,15 @@ code {
     monospace;
 }
 
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+  }
+}
+
 nav {
   background-color: #363a45;
   height: 5vh;
