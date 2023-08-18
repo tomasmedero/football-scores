@@ -10,6 +10,7 @@ export const ScoreList: React.FC = () => {
     async function fetchTeams() {
       try {
         const teams = await getAPI()
+        teams.sort((a, b) => a.gameTime - b.gameTime)
         setTeamData(teams)
       } catch (error) {
         console.error('Error fetching team name:', error)
