@@ -22,6 +22,7 @@ export const ScoreList: React.FC = () => {
 
   return (
     <>
+      <h1 className='ao-vivo'>EN VIVO</h1>
       <div className='grid-container'>
         {teamData.map((team) => (
           <ScoreCard key={team.idGame} team={team} />

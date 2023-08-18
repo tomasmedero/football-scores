@@ -2,6 +2,12 @@ import { MatchData } from '../types/types'
 import { timeConvert } from './timeConvert'
 
 export const getAPI = async (): Promise<MatchData[]> => {
+  //En el Score List pedirle que le pases si estas en ruta fecha o en vivo
+  //Hacer dos constantes una que tenga live all y otra que diga date
+  // Hacer un calendario arriba del grid
+  // Pasar la fecha y mandarsela por aca, ponerle que sea opcional
+  //Hacer que los types sean opcionales chequear lo que trae el date
+
   const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all'
   const options: RequestInit = {
     method: 'GET',

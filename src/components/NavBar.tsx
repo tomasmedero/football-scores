@@ -22,9 +22,9 @@ export const Navbar = () => {
             className={({ isActive }) =>
               `nav-item nav-link ${isActive ? 'active' : ''}`
             }
-            to='/Dia'
+            to='/fecha'
           >
-            Por Dia
+            Fecha
           </NavLink>
         </div>
       </div>
