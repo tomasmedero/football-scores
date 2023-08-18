@@ -36,7 +36,12 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
 
           <div className='league-name'>
             {team.flagLeague ? (
-              <img width='20' height='20' src={team.flagLeague} />
+              <img
+                width='20'
+                height='20'
+                className='flag-league'
+                src={team.flagLeague}
+              />
             ) : (
               ''
             )}
