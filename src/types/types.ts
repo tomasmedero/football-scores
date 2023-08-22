@@ -15,6 +15,7 @@ export interface MatchData {
   logoLeague: string
   nameLeague: string
   flagLeague: string
+  idLeague: string
 }
 
 export interface ScoreCardProps {

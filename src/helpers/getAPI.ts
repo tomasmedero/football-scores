@@ -51,6 +51,7 @@ export const getAPI = async (): Promise<MatchData[]> => {
     const logoLeague = match.league.logo
     const nameLeague = match.league.name
     const flagLeague = match.league.flag
+    const idLeague = match.league.id
 
     const dateMatch = timeConvert(fixture.date)
     const gameDay = dateMatch.diaSemanaFormato
@@ -70,6 +71,7 @@ export const getAPI = async (): Promise<MatchData[]> => {
       logoLeague: logoLeague,
       nameLeague: nameLeague,
       flagLeague: flagLeague,
+      idLeague: idLeague,
 
       // Home Info
       nameHome: teamHome.name,

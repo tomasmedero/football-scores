@@ -15,6 +15,8 @@ export const ScorePage = () => {
       pageInfo = 'HOY - LIGAS PRINCIPALES'
     } else if (location.pathname === '/fecha') {
       pageInfo = 'ELIGE EL DIA'
+    } else if (location.pathname === '/ligasproximos') {
+      pageInfo = 'PROXIMOS - LIGAS PRINCIPALES'
     }
     setInfo(pageInfo)
   }, [location.pathname])

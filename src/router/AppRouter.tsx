@@ -9,6 +9,7 @@ export const AppRouter = () => {
           <Route path='/' element={<ScorePage />} />
           <Route path='vivo' element={<ScorePage />} />
           <Route path='ligasprincipales' element={<ScorePage />} />
+          <Route path='ligasproximos' element={<ScorePage />} />
           <Route path='fecha' element={<ScorePage />} />
           <Route path='/*' element={<Navigate to='/' />} />
         </Routes>

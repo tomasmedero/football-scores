@@ -22,6 +22,15 @@ export const Navbar = () => {
             className={({ isActive }) =>
               `nav-item nav-link ${isActive ? 'active' : ''}`
             }
+            to='/ligasproximos'
+          >
+            Proximos Partidos
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              `nav-item nav-link ${isActive ? 'active' : ''}`
+            }
             to='/fecha'
           >
             Fecha

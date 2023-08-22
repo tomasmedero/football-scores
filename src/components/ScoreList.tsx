@@ -12,7 +12,13 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
     async function fetchTeams() {
       try {
         const teams = await getAPI()
-        teams.sort((a, b) => a.gameTime - b.gameTime)
+        teams.sort((a, b) => {
+          if (a.idLeague !== b.idLeague) {
+            return a.idLeague > b.idLeague ? 1 : -1
+          } else {
+            return a.gameTime - b.gameTime
+          }
+        })
         setTeamData(teams)
       } catch (error) {
         console.error('Error fetching team name:', error)
@@ -29,11 +35,34 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
       {location.pathname === '/fecha' && (
         <h1 className='date-page'>ACA VA PARA ELEGIR LA FECHA</h1>
       )}
-      <div className='grid-container'>
+
+      {teamData.map((league) => (
+        <div className='league-list' key={league.idLeague}>
+          <h3 className='league-name'>
+            {league.flagLeague ? (
+              <img
+                width='20'
+                height='20'
+                className='flag-league'
+                src={league.flagLeague}
+              />
+            ) : (
+              ''
+            )}
+
+            {league.nameLeague}
+          </h3>
+          <div className='grid-container'>
+            <ScoreCard key={league.idGame} team={league} />
+          </div>
+        </div>
+      ))}
+
+      {/* <div className='grid-container'>
         {teamData.map((team) => (
           <ScoreCard key={team.idGame} team={team} />
         ))}
-      </div>
+      </div> */}
     </>
   )
 }

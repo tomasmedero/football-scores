@@ -33,12 +33,11 @@ nav {
 
 .grid-container {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* grid-template-rows: repeat(3, 3fr); */
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  margin: 7px;
+  justify-content: center;
 }
 
 .grid-item {
@@ -46,7 +45,7 @@ nav {
   padding: 10px;
   background-color: #454f63;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: minmax(0, 180px) minmax(0, 180px) minmax(0, 180px);
 }
 
 .column-left,
@@ -106,5 +105,14 @@ nav {
 }
 
 .date-page {
+  text-align: center;
+}
+
+.league-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.league-name {
   text-align: center;
 }
