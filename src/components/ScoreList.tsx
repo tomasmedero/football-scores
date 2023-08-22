@@ -26,7 +26,9 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
     <>
       <h1 className='ao-vivo'>{pageInfo}</h1>
 
-      {location.pathname === '/fecha' && <h1>ACA VA PARA ELEGIR LA FECHA</h1>}
+      {location.pathname === '/fecha' && (
+        <h1 className='date-page'>ACA VA PARA ELEGIR LA FECHA</h1>
+      )}
       <div className='grid-container'>
         {teamData.map((team) => (
           <ScoreCard key={team.idGame} team={team} />
