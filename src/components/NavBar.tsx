@@ -13,9 +13,9 @@ export const Navbar = () => {
             className={({ isActive }) =>
               `nav-item nav-link ${isActive ? 'active' : ''}`
             }
-            to='/vivo'
+            to='/ligasprincipales'
           >
-            Vivo
+            Ligas Hoy
           </NavLink>
 
           <NavLink

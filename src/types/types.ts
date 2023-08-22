@@ -20,3 +20,7 @@ export interface MatchData {
 export interface ScoreCardProps {
   team: MatchData
 }
+
+export interface ScoreListProps {
+  pageInfo: string
+}

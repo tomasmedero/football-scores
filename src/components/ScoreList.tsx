@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { ScoreCard } from '.'
 import { getAPI } from '../helpers/getAPI'
-import { MatchData } from '../types/types'
+import { MatchData, ScoreListProps } from '../types/types'
 
-export const ScoreList: React.FC = () => {
+export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
   const [teamData, setTeamData] = useState<MatchData[]>([])
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const ScoreList: React.FC = () => {
 
   return (
     <>
-      <h1 className='ao-vivo'>EN VIVO</h1>
+      <h1 className='ao-vivo'>{pageInfo}</h1>
       <div className='grid-container'>
         {teamData.map((team) => (
           <ScoreCard key={team.idGame} team={team} />
