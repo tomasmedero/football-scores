@@ -23,7 +23,6 @@ export const ScorePage = () => {
     <>
       <Navbar />
       <ScoreList pageInfo={info} />
-      {location.pathname === '/fecha' && <h1>ACA VA PARA ELEGIR LA FECHA</h1>}
     </>
   )
 }
