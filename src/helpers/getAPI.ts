@@ -8,6 +8,25 @@ export const getAPI = async (): Promise<MatchData[]> => {
   // Pasar la fecha y mandarsela por aca, ponerle que sea opcional
   //Hacer que los types sean opcionales chequear lo que trae el date
 
+  //League IDs --->
+
+  // Premier: 39
+  // Seria A: 135
+  // Bundesliga: 78
+  // Brasileirao: 71
+  // Liga Argentina:128
+  // La liga: 140
+  // Uber Eats: 61
+  // Copa Liga: 483
+  // Champions:2
+  // Europa League: 3
+  // Copa Libertadores: 13
+  // Copa Sudamericana:11
+  //Copa America:9
+  //Nation League: 5
+  /// Mundial: 1
+  // Mundialito: 15
+
   const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all'
   const options: RequestInit = {
     method: 'GET',
