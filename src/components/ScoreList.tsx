@@ -14,6 +14,7 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
         const teams = await getAPI()
         console.log(teams)
 
+        teams.sort((a, b) => a.idLeague - b.idLeague)
         teams.forEach((team) => {
           team.matchInfo.sort((a, b) => a.gameTime - b.gameTime)
         })

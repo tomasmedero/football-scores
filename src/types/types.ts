@@ -15,7 +15,7 @@ export interface MatchInfo {
 }
 
 export interface LeagueInfo {
-  idLeague: string
+  idLeague: number
   logoLeague: string
   nameLeague: string
   flagLeague: string
