@@ -23,7 +23,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
       <div className='grid-item' key={match.idGame}>
         <div className='column-left'>
           <div className='teams'>
-            <img width='80' height='80' src={teamHomeURL} />
+            <img width='70' height='70' src={teamHomeURL} />
             <p className={classNameHome}>{match.nameHome}</p>
           </div>
         </div>
@@ -47,7 +47,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
 
         <div className='column-right'>
           <div className='teams'>
-            <img width='80' height='80' src={teamAwayURL} />
+            <img width='70' height='70' src={teamAwayURL} />
             <p className={classNameAway}>{match.nameAway}</p>
           </div>
         </div>

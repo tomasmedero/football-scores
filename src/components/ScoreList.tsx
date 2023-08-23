@@ -39,8 +39,8 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
           <h3 className='league-name'>
             {league.flagLeague ? (
               <img
-                width='20'
-                height='20'
+                width='30'
+                height='30'
                 className='flag-league'
                 src={league.flagLeague}
               />
