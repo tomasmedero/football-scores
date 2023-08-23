@@ -1,4 +1,4 @@
-export interface MatchData {
+export interface MatchInfo {
   idGame: number
   gameTime: number
   dateTime: string
@@ -12,14 +12,18 @@ export interface MatchData {
   nameAway: string
   goalAway: number
   winnerHome: boolean
+}
+
+export interface LeagueInfo {
+  idLeague: string
   logoLeague: string
   nameLeague: string
   flagLeague: string
-  idLeague: string
+  matchInfo: MatchInfo[]
 }
 
 export interface ScoreCardProps {
-  team: MatchData
+  team: LeagueInfo
 }
 
 export interface ScoreListProps {

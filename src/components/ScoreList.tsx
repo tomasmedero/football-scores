@@ -1,23 +1,20 @@
 import { useEffect, useState } from 'react'
 import { ScoreCard } from '.'
 import { getAPI } from '../helpers/getAPI'
-import { MatchData, ScoreListProps } from '../types/types'
+import { LeagueInfo, ScoreListProps } from '../types/types'
 import { useLocation } from 'react-router-dom'
 
 export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
-  const [teamData, setTeamData] = useState<MatchData[]>([])
+  const [teamData, setTeamData] = useState<LeagueInfo[]>([])
   const location = useLocation()
 
   useEffect(() => {
     async function fetchTeams() {
       try {
         const teams = await getAPI()
-        teams.sort((a, b) => {
-          if (a.idLeague !== b.idLeague) {
-            return a.idLeague > b.idLeague ? 1 : -1
-          } else {
-            return a.gameTime - b.gameTime
-          }
+
+        teams.forEach((team) => {
+          team.matchInfo.sort((a, b) => a.gameTime - b.gameTime)
         })
         setTeamData(teams)
       } catch (error) {
@@ -52,8 +49,9 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
 
             {league.nameLeague}
           </h3>
+
           <div className='grid-container'>
-            <ScoreCard key={league.idGame} team={league} />
+            <ScoreCard key={league.idLeague} team={league} />
           </div>
         </div>
       ))}

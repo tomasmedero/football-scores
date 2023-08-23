@@ -1,7 +1,7 @@
-import { MatchData } from '../types/types'
+import { LeagueInfo, MatchInfo } from '../types/types'
 import { timeConvert } from './timeConvert'
 
-export const getAPI = async (): Promise<MatchData[]> => {
+export const getAPI = async (): Promise<LeagueInfo[]> => {
   // Hacer un calendario arriba del grid
   //En Ligas Hoy poner los partidos que se juegan hoy, Si no se jugaron borde Azul, si ya se jugaron borde Gris,
   //si se estan jugan borde Verde
@@ -39,7 +39,7 @@ export const getAPI = async (): Promise<MatchData[]> => {
 
   const data = await resp.json()
 
-  const matchLive: MatchData[] = []
+  const matchLive: LeagueInfo[] = []
 
   data.response.forEach((match: any) => {
     const fixture = match.fixture
@@ -58,7 +58,7 @@ export const getAPI = async (): Promise<MatchData[]> => {
     const gameDayNumber = dateMatch.numeroDia
     const gameMonth = dateMatch.nombreMes
 
-    const matchData: MatchData = {
+    const matchInfo: MatchInfo = {
       // Fixture
       idGame: fixture.id,
       gameTime: fixture.status.elapsed,
@@ -67,10 +67,6 @@ export const getAPI = async (): Promise<MatchData[]> => {
       dateDayNumber: gameDayNumber,
       dateMonth: gameMonth,
       winnerHome: winnerHome,
-      logoLeague: logoLeague,
-      nameLeague: nameLeague,
-      flagLeague: flagLeague,
-      idLeague: idLeague,
 
       // Home Info
       nameHome: teamHome.name,
@@ -83,7 +79,25 @@ export const getAPI = async (): Promise<MatchData[]> => {
       goalAway: goals.away,
     }
 
-    matchLive.push(matchData)
+    const existingLeague = matchLive.find(
+      (league) => league.idLeague === idLeague
+    )
+
+    if (existingLeague) {
+      // Si existe, agregamos el matchInfo al arreglo matchInfo existente
+      existingLeague.matchInfo.push(matchInfo)
+    } else {
+      const matchData: LeagueInfo = {
+        //League
+        idLeague: idLeague,
+        logoLeague: logoLeague,
+        nameLeague: nameLeague,
+        flagLeague: flagLeague,
+        matchInfo: [matchInfo],
+      }
+
+      matchLive.push(matchData)
+    }
   })
 
   return matchLive

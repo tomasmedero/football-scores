@@ -1,29 +1,30 @@
 import { ScoreCardProps } from '../types/types'
 
 export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
-  const teamHomeURL = `https://media.api-sports.io/football/teams/${team.idHome}.png`
-  const teamAwayURL = `https://media.api-sports.io/football/teams/${team.idAway}.png`
+  const scoreCards: JSX.Element[] = []
+  team.matchInfo.forEach((match) => {
+    const teamHomeURL = `https://media.api-sports.io/football/teams/${match.idHome}.png`
+    const teamAwayURL = `https://media.api-sports.io/football/teams/${match.idAway}.png`
 
-  let classNameAway
-  let classNameHome
+    let classNameAway: string
+    let classNameHome: string
 
-  if (team.winnerHome === true) {
-    classNameHome = 'team-winner'
-    classNameAway = 'team-loser'
-  } else if (team.winnerHome === false) {
-    classNameHome = 'team-loser'
-    classNameAway = 'team-winner'
-  } else {
-    classNameHome = 'team-draw'
-    classNameAway = 'team-draw'
-  }
-  return (
-    <>
-      <div className='grid-item'>
+    if (match.winnerHome === true) {
+      classNameHome = 'team-winner'
+      classNameAway = 'team-loser'
+    } else if (match.winnerHome === false) {
+      classNameHome = 'team-loser'
+      classNameAway = 'team-winner'
+    } else {
+      classNameHome = 'team-draw'
+      classNameAway = 'team-draw'
+    }
+    scoreCards.push(
+      <div className='grid-item' key={match.idGame}>
         <div className='column-left'>
           <div className='teams'>
             <img width='40' height='50' src={teamHomeURL} />
-            <p className={classNameHome}>{team.nameHome}</p>
+            <p className={classNameHome}>{match.nameHome}</p>
           </div>
         </div>
 
@@ -35,22 +36,24 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
           )}
 
           <div className='match-day'>
-            {team.dateDay} {team.dateDayNumber} {team.dateMonth}
+            {match.dateDay} {match.dateDayNumber} {match.dateMonth}
           </div>
-          <div className='match-time'>{team.dateTime}</div>
+          <div className='match-time'>{match.dateTime}</div>
           <div className='match-score'>
-            {team.goalHome} : {team.goalAway}
+            {match.goalHome} : {match.goalAway}
           </div>
-          <div className='match-minutes'>{team.gameTime}'</div>
+          <div className='match-minutes'>{match.gameTime}'</div>
         </div>
 
         <div className='column-right'>
           <div className='teams'>
             <img width='40' height='50' src={teamAwayURL} />
-            <p className={classNameAway}>{team.nameAway}</p>
+            <p className={classNameAway}>{match.nameAway}</p>
           </div>
         </div>
       </div>
-    </>
-  )
+    )
+  })
+
+  return <>{scoreCards}</>
 }
