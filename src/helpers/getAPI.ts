@@ -2,11 +2,10 @@ import { MatchData } from '../types/types'
 import { timeConvert } from './timeConvert'
 
 export const getAPI = async (): Promise<MatchData[]> => {
-  //En el Score List pedirle que le pases si estas en ruta fecha o en vivo
-  //Hacer dos constantes una que tenga live all y otra que diga date
   // Hacer un calendario arriba del grid
-  // Pasar la fecha y mandarsela por aca, ponerle que sea opcional
-  //Hacer que los types sean opcionales chequear lo que trae el date
+  //En Ligas Hoy poner los partidos que se juegan hoy, Si no se jugaron borde Azul, si ya se jugaron borde Gris,
+  //si se estan jugan borde Verde
+  // En proximos Partidos crear un uno getAPI donde traiga los partidos proximos de las ligas principales
 
   //League IDs --->
 
