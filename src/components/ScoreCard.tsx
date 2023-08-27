@@ -20,7 +20,12 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
       classNameAway = 'team-draw'
     }
     scoreCards.push(
-      <div className='grid-item' key={match.idGame}>
+      <div
+        className={`grid-item ${
+          match.gameTime ? 'grid-item-live' : 'grid-item-finish'
+        }`}
+        key={match.idGame}
+      >
         <div className='column-left'>
           <div className='teams'>
             <img width='70' height='70' src={teamHomeURL} />
@@ -29,20 +34,53 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ team }) => {
         </div>
 
         <div className='column-center'>
-          {team.logoLeague ? (
-            <img width='40' height='40' src={team.logoLeague} />
+          {match.gameTime ? (
+            <>
+              {team.logoLeague && (
+                <img
+                  width='40'
+                  height='40'
+                  src={team.logoLeague}
+                  alt='Logo de la liga'
+                />
+              )}
+              <div className='match-day'>
+                {match.dateDay} {match.dateDayNumber} {match.dateMonth}
+              </div>
+              <div className='match-time'>{match.dateTime}</div>
+              <div className='match-score'>
+                {match.penaltyHome ? (
+                  <span className='penalty-left'>({match.penaltyHome})</span>
+                ) : null}
+                {match.goalHome} : {match.goalAway}
+                {match.penaltyHome ? (
+                  <span className='penalty-right'>({match.penaltyAway})</span>
+                ) : null}
+              </div>
+              <div className='match-minutes'>
+                {match.gameTime ? match.gameTime : ''}'
+              </div>
+            </>
           ) : (
-            ''
+            <>
+              <div className='no-match-start'>
+                {team.logoLeague && (
+                  <img
+                    width='70'
+                    height='70'
+                    src={team.logoLeague}
+                    alt='Logo de la liga'
+                  />
+                )}
+                <div className='match-day'>
+                  {match.dateDay} {match.dateDayNumber} {match.dateMonth}
+                </div>
+                <div className='match-time' style={{ marginTop: '5px' }}>
+                  {match.dateTime}
+                </div>
+              </div>
+            </>
           )}
-
-          <div className='match-day'>
-            {match.dateDay} {match.dateDayNumber} {match.dateMonth}
-          </div>
-          <div className='match-time'>{match.dateTime}</div>
-          <div className='match-score'>
-            {match.goalHome} : {match.goalAway}
-          </div>
-          <div className='match-minutes'>{match.gameTime}'</div>
         </div>
 
         <div className='column-right'>

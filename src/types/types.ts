@@ -12,6 +12,8 @@ export interface MatchInfo {
   nameAway: string
   goalAway: number
   winnerHome: boolean
+  penaltyHome: number
+  penaltyAway: number
 }
 
 export interface LeagueInfo {

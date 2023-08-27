@@ -1,17 +1,26 @@
 import { useEffect, useState } from 'react'
 import { ScoreCard } from '.'
-import { getAPI } from '../helpers/getAPI'
 import { LeagueInfo, ScoreListProps } from '../types/types'
 import { useLocation } from 'react-router-dom'
+import { getAPI, getAPInext } from '../helpers'
 
 export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
   const [teamData, setTeamData] = useState<LeagueInfo[]>([])
   const location = useLocation()
 
+  // const leagueIds = [
+  //   39, 135, 78, 71, 128, 140, 61, 2, 3, 13, 11, 9, 5, 1, 14, 1032,
+  // ]
+
   useEffect(() => {
     async function fetchTeams() {
       try {
-        const teams = await getAPI()
+        let teams: LeagueInfo[] = []
+        if (location.pathname === '/ligasproximos') {
+          teams = await getAPInext(39)
+        } else if (location.pathname === '/') {
+          teams = await getAPI()
+        }
         console.log(teams)
 
         teams.sort((a, b) => a.idLeague - b.idLeague)
@@ -25,7 +34,7 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
     }
 
     fetchTeams()
-  }, [])
+  }, [location.pathname])
 
   return (
     <>
@@ -57,12 +66,6 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
           </div>
         </div>
       ))}
-
-      {/* <div className='grid-container'>
-        {teamData.map((team) => (
-          <ScoreCard key={team.idGame} team={team} />
-        ))}
-      </div> */}
     </>
   )
 }

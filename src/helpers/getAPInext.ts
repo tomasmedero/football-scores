@@ -1,37 +1,8 @@
 import { LeagueInfo, MatchInfo } from '../types/types'
 import { timeConvert } from './timeConvert'
 
-export const getAPI = async (): Promise<LeagueInfo[]> => {
-  // Hacer un calendario arriba del grid
-  //En Ligas Hoy poner los partidos que se juegan hoy, Si no se jugaron borde Azul, si ya se jugaron borde Gris,
-  // En proximos Partidos crear un uno getAPI donde traiga los partidos proximos de las ligas principales
-
-  // let teams: LeagueInfo[] = []
-  // if (location.pathname === '/') {
-  //   teams = await getAPI()
-  // } else if (location.pathname === 'ligasproximos') {
-  //   teams = await getAPInext()
-  // }
-  //League IDs --->
-
-  // Premier: 39
-  // Seria A: 135
-  // Bundesliga: 78
-  // Brasileirao: 71
-  // Liga Argentina:128
-  // La liga: 140
-  // Uber Eats: 61
-  // Champions:2
-  // Europa League: 3
-  // Copa Libertadores: 13
-  // Copa Sudamericana:11
-  //Copa America:9
-  //Nation League: 5
-  /// Mundial: 1
-  // Mundialito: 15
-  //Copa de la liga 1032
-
-  const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all'
+export const getAPInext = async (leagueId: number): Promise<LeagueInfo[]> => {
+  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${leagueId}&season=2023&from=2023-08-29&to=2023-09-01`
   const options: RequestInit = {
     method: 'GET',
     headers: {
@@ -44,7 +15,7 @@ export const getAPI = async (): Promise<LeagueInfo[]> => {
 
   const data = await resp.json()
 
-  const matchLive: LeagueInfo[] = []
+  const matchFuture: LeagueInfo[] = []
 
   data.response.forEach((match: any) => {
     const fixture = match.fixture
@@ -87,7 +58,7 @@ export const getAPI = async (): Promise<LeagueInfo[]> => {
       penaltyAway: penalty.away,
     }
 
-    const existingLeague = matchLive.find(
+    const existingLeague = matchFuture.find(
       (league) => league.idLeague === idLeague
     )
 
@@ -104,9 +75,9 @@ export const getAPI = async (): Promise<LeagueInfo[]> => {
         matchInfo: [matchInfo],
       }
 
-      matchLive.push(matchData)
+      matchFuture.push(matchData)
     }
   })
 
-  return matchLive
+  return matchFuture
 }
