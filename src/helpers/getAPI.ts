@@ -6,6 +6,7 @@ export const getAPI = async (): Promise<LeagueInfo[]> => {
   //En Ligas Hoy poner los partidos que se juegan hoy, Si no se jugaron borde Azul, si ya se jugaron borde Gris,
   //si se estan jugan borde Verde
   // En proximos Partidos crear un uno getAPI donde traiga los partidos proximos de las ligas principales
+  //Agregar Penales
 
   //League IDs --->
 
