@@ -14,6 +14,7 @@ export interface MatchInfo {
   winnerHome: boolean
   penaltyHome: number
   penaltyAway: number
+  dateDate: Date
 }
 
 export interface LeagueInfo {

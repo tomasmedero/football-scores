@@ -147,3 +147,27 @@ nav {
 .no-match-start img {
   margin-bottom: 10px;
 }
+
+.tournament-tittle {
+  text-align: center;
+}
+
+.league-logos {
+  justify-content: center;
+  display: flex;
+  grid-template-columns: repeat(1, auto);
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.league-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tournament-container {
+  margin-top: 15px;
+}

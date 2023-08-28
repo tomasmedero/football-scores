@@ -1,8 +1,21 @@
 import { LeagueInfo, MatchInfo } from '../types/types'
 import { timeConvert } from './timeConvert'
 
-export const getAPInext = async (leagueId: number): Promise<LeagueInfo[]> => {
-  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${leagueId}&season=2023&from=2023-08-29&to=2023-09-01`
+export const getAPInext = async (leagueId?: number): Promise<LeagueInfo[]> => {
+  const currentDate = new Date()
+  const currentYear = currentDate.getFullYear()
+
+  const fromDate = new Date(currentDate)
+  const toDate = new Date(currentDate)
+
+  fromDate.setDate(fromDate.getDate() + 1)
+
+  toDate.setDate(toDate.getDate() + 6)
+
+  const fromDateString = fromDate.toISOString().split('T')[0]
+  const toDateString = toDate.toISOString().split('T')[0]
+
+  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${leagueId}&season=${currentYear}&from=${fromDateString}&to=${toDateString}`
   const options: RequestInit = {
     method: 'GET',
     headers: {
@@ -29,6 +42,7 @@ export const getAPInext = async (leagueId: number): Promise<LeagueInfo[]> => {
     const idLeague = match.league.id
     const penalty = match.score.penalty
 
+    const dateDate = fixture.date
     const dateMatch = timeConvert(fixture.date)
     const gameDay = dateMatch.diaSemanaFormato
     const gameTime = dateMatch.horaFormato
@@ -44,6 +58,7 @@ export const getAPInext = async (leagueId: number): Promise<LeagueInfo[]> => {
       dateDayNumber: gameDayNumber,
       dateMonth: gameMonth,
       winnerHome: winnerHome,
+      dateDate: dateDate,
 
       // Home Info
       nameHome: teamHome.name,
