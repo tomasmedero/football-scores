@@ -3,8 +3,7 @@ import { timeConvert } from './timeConvert'
 
 export const getAPI = async (): Promise<LeagueInfo[]> => {
   // Hacer un calendario arriba del grid
-  //En Ligas Hoy poner los partidos que se juegan hoy, Si no se jugaron borde Azul, si ya se jugaron borde Gris,
-  // En proximos Partidos crear un uno getAPI donde traiga los partidos proximos de las ligas principales
+  //En Ligas Hoy poner los partidos que se juegan hoy
   //Hacer un modal o algo para ligas proximos
 
   const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all'
