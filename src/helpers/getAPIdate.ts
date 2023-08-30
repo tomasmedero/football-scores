@@ -4,18 +4,13 @@ import { timeConvert } from './timeConvert'
 export const getAPIdate = async (
   date: Date = new Date()
 ): Promise<LeagueInfo[]> => {
-  const currentDate = date
+  const calendarDate = date
 
-  const selectedYear = currentDate.getFullYear()
+  const selectedYear = calendarDate.getFullYear()
 
-  const fromDate = new Date(currentDate)
-  const toDate = new Date(currentDate)
+  const selectedDate = new Date(calendarDate)
 
-  fromDate.setDate(fromDate.getDate() + 1)
-
-  toDate.setDate(toDate.getDate() + 6)
-
-  const selectedDateString = fromDate.toISOString().split('T')[0]
+  const selectedDateString = selectedDate.toISOString().split('T')[0]
 
   const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?season=${selectedYear}&date=${selectedDateString}`
   const options: RequestInit = {
