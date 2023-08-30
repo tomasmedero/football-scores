@@ -4,6 +4,7 @@ import { timeConvert } from './timeConvert'
 export const getAPI = async (): Promise<LeagueInfo[]> => {
   // Cuando clickea en uno de los partidos que vaya a otra pagina donde renderice
   // un componente que muestre la info del partido mejor tipo formaciones o algo
+  //Login y register
 
   const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all'
   const options: RequestInit = {
