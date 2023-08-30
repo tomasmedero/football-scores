@@ -2,9 +2,8 @@ import { LeagueInfo, MatchInfo } from '../types/types'
 import { timeConvert } from './timeConvert'
 
 export const getAPI = async (): Promise<LeagueInfo[]> => {
-  // Hacer un calendario arriba del grid
-  //En Ligas Hoy poner los partidos que se juegan hoy
-  //Hacer un modal o algo para ligas proximos
+  // Cuando clickea en uno de los partidos que vaya a otra pagina donde renderice
+  // un componente que muestre la info del partido mejor tipo formaciones o algo
 
   const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all'
   const options: RequestInit = {
