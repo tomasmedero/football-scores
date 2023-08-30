@@ -2,15 +2,35 @@ import { useEffect, useState } from 'react'
 import { ScoreCard } from '.'
 import { LeagueInfo, ScoreListProps } from '../types/types'
 import { useLocation } from 'react-router-dom'
-import { cupIds, getAPI, getAPInext, leagueIds, leagueInfo } from '../helpers'
+import {
+  cupIds,
+  getAPI,
+  getAPIdate,
+  getAPInext,
+  getAPItoday,
+  leagueIds,
+  leagueInfo,
+} from '../helpers'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import es from 'date-fns/locale/es'
+import 'react-datepicker/dist/react-datepicker.css'
+
+registerLocale('es', es)
 
 export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
   const [teamData, setTeamData] = useState<LeagueInfo[]>([])
   const location = useLocation()
   const [leagueIdData, setLeagueIdData] = useState<number>()
+  const [startDate, setStartDate] = useState<Date>(new Date())
 
   const changeLeague = (leagueId: number) => {
     setLeagueIdData(leagueId)
+  }
+
+  const handleDateChange = (date: Date) => {
+    if (date) {
+      setStartDate(date)
+    }
   }
 
   useEffect(() => {
@@ -21,6 +41,10 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
           teams = await getAPInext(leagueIdData)
         } else if (location.pathname === '/') {
           teams = await getAPI()
+        } else if (location.pathname === '/ligashoy') {
+          teams = await getAPItoday()
+        } else if (location.pathname === '/fecha') {
+          teams = await getAPIdate()
         }
         teams.sort((a, b) => a.idLeague - b.idLeague)
 
@@ -33,6 +57,7 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
         })
 
         console.log(teams)
+        console.log(startDate)
 
         setTeamData(teams)
       } catch (error) {
@@ -41,7 +66,7 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
     }
 
     fetchTeams()
-  }, [location.pathname, leagueIdData])
+  }, [location.pathname, leagueIdData, startDate])
 
   return (
     <>
@@ -49,8 +74,15 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
 
       {location.pathname === '/fecha' && (
         <>
-          <h2 className='date-page'>Elije la Fecha</h2>
-          <h1 className='date-page'>ACA VA PARA ELEGIR LA FECHA</h1>
+          <div className='form-group mb-2 text-center'>
+            <DatePicker
+              selected={startDate}
+              onChange={handleDateChange}
+              className='form-control text-center'
+              locale='es'
+              dateFormat="dd 'de' MMMM 'de' yyyy"
+            />
+          </div>
         </>
       )}
       {location.pathname === '/ligasproximos' && (
