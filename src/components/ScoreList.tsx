@@ -7,7 +7,6 @@ import {
   getAPI,
   getAPIdate,
   getAPInext,
-  getAPItoday,
   leagueIds,
   leagueInfo,
 } from '../helpers'
@@ -39,12 +38,10 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
         let teams: LeagueInfo[] = []
         if (location.pathname === '/ligasproximos') {
           teams = await getAPInext(leagueIdData)
+        } else if (location.pathname === '/fecha') {
+          teams = await getAPIdate(startDate)
         } else if (location.pathname === '/') {
           teams = await getAPI()
-        } else if (location.pathname === '/ligashoy') {
-          teams = await getAPItoday()
-        } else if (location.pathname === '/fecha') {
-          teams = await getAPIdate()
         }
         teams.sort((a, b) => a.idLeague - b.idLeague)
 
@@ -57,7 +54,6 @@ export const ScoreList: React.FC<ScoreListProps> = ({ pageInfo }) => {
         })
 
         console.log(teams)
-        console.log(startDate)
 
         setTeamData(teams)
       } catch (error) {

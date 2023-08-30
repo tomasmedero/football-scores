@@ -4,7 +4,7 @@ export const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-sm navbar-dark bg-dark p-2 '>
       <Link className='navbar-brand' to='/'>
-        LIVE
+        Football Results
       </Link>
 
       <div className='navbar-collapse  '>
@@ -13,18 +13,17 @@ export const Navbar = () => {
             className={({ isActive }) =>
               `nav-item nav-link ${isActive ? 'active' : ''}`
             }
-            to='/ligashoy'
+            to='/'
           >
-            Ligas Hoy
+            Vivo
           </NavLink>
-
           <NavLink
             className={({ isActive }) =>
               `nav-item nav-link ${isActive ? 'active' : ''}`
             }
             to='/ligasproximos'
           >
-            Proximos Partidos
+            Ligas
           </NavLink>
 
           <NavLink

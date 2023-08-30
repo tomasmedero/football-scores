@@ -11,8 +11,6 @@ export const ScorePage = () => {
     let pageInfo: string = ''
     if (location.pathname === '/') {
       pageInfo = 'EN VIVO'
-    } else if (location.pathname === '/ligashoy') {
-      pageInfo = 'PARTIDOS HOY'
     } else if (location.pathname === '/fecha') {
       pageInfo = 'ELIGE EL DIA'
     } else if (location.pathname === '/ligasproximos') {
